@@ -42,12 +42,12 @@ struct JET
 
 
 void welcome();
-void Init(int);		// ³õÊ¼»¯ÑÌ»¨
-void Load();		// ¼ÓÔØÑÌ»¨Í¼Æ¬
-void Shoot();		// ·¢ÉäÑÌ»¨
-void Chose(DWORD&);		// É¸Ñ¡ÑÌ»¨
-void Style(DWORD&);		// ·¢ÉäÑùÊ½
-void Show(DWORD*);		// ÕÀ·ÅÑÌ»¨
+void Init(int);		// åˆå§‹åŒ–çƒŸèŠ±
+void Load();		// åŠ è½½çƒŸèŠ±å›¾ç‰‡
+void Shoot();		// å‘å°„çƒŸèŠ±
+void Chose(DWORD&);		// ç­›é€‰çƒŸèŠ±
+void Style(DWORD&);		// å‘å°„æ ·å¼
+void Show(DWORD*);		// ç»½æ”¾çƒŸèŠ±
 
 
 void main()
@@ -105,30 +105,30 @@ void welcome()
 		int x = 600 + int(180 * sin(PI * 2 * i / 60));
 		int y = 200 + int(180 * cos(PI * 2 * i / 60));
 		cleardevice();
-		settextstyle(i, 0, "¿¬Ìå");
+		settextstyle(i, 0, "æ¥·ä½“");
 		outtextxy(x-80, y, "2023");
-		outtextxy(x-10, y+100, "×£¸÷Î»ÐÂÄê¿ìÀÖ");
+		outtextxy(x-10, y+100, "ç¥å„ä½æ–°å¹´å¿«ä¹");
 		Sleep(25);
 	}
 
 	Sleep(2000);
 	cleardevice();
-	settextstyle(25, 0, "¿¬Ìå");
-	outtextxy(400, 270, "     ±¬ÖñÉùÖÐÒ»Ëê³ý,");
-	outtextxy(400, 320, "     ´º·çËÍÅ¯ÈëÍÀËÕ¡£");
-	outtextxy(400, 370, "     Ç§ÃÅÍò»§•Ó•ÓÈÕ,");
-	outtextxy(400, 420, "     ×Ü°ÑÐÂÌÒ»»¾É·û¡£");
-	outtextxy(400, 470, "              ----(ËÎ)Íõ°²Ê¯¡¶ÔªÈÕ¡·");
+	settextstyle(25, 0, "æ¥·ä½“");
+	outtextxy(400, 270, "     çˆ†ç«¹å£°ä¸­ä¸€å²é™¤,");
+	outtextxy(400, 320, "     æ˜¥é£Žé€æš–å…¥å± è‹ã€‚");
+	outtextxy(400, 370, "     åƒé—¨ä¸‡æˆ·æ›ˆæ›ˆæ—¥,");
+	outtextxy(400, 420, "     æ€»æŠŠæ–°æ¡ƒæ¢æ—§ç¬¦ã€‚");
+	outtextxy(400, 470, "              ----(å®‹)çŽ‹å®‰çŸ³ã€Šå…ƒæ—¥ã€‹");
 	Sleep(2000);
 	cleardevice();
-	settextstyle(25, 0, "¿¬Ìå");
-	outtextxy(400, 170, "       ÈÃ·³ÄÕ½áÊø,");
-	outtextxy(400, 220, "       ÈÃ¿ìÀÖÆð²½,");
-	outtextxy(400, 270, "       ÈÃÓÆÏÐÖõÄ¿¡£");
-	outtextxy(400, 320, "         ÐÂÄêµ½,");
-	outtextxy(400, 370, "   ½èÐÂÉýµÄÌ«Ñô°ÑÄã×£¸£,");
-	outtextxy(400, 420, "  Ô¸ÄãÐÂÄê¼ªÏé,ÐÒ¸£Ã¿Ò»²½¡£");
-	outtextxy(400, 470, " ÅãºÃÔË×ßÒ»Â·,°Ñ½¡¿µµ±¹éËÞ¡£");
+	settextstyle(25, 0, "æ¥·ä½“");
+	outtextxy(400, 170, "       è®©çƒ¦æ¼ç»“æŸ,");
+	outtextxy(400, 220, "       è®©å¿«ä¹èµ·æ­¥,");
+	outtextxy(400, 270, "       è®©æ‚ é—²çž©ç›®ã€‚");
+	outtextxy(400, 320, "         æ–°å¹´åˆ°,");
+	outtextxy(400, 370, "   å€Ÿæ–°å‡çš„å¤ªé˜³æŠŠä½ ç¥ç¦,");
+	outtextxy(400, 420, "  æ„¿ä½ æ–°å¹´å‰ç¥¥,å¹¸ç¦æ¯ä¸€æ­¥ã€‚");
+	outtextxy(400, 470, " é™ªå¥½è¿èµ°ä¸€è·¯,æŠŠå¥åº·å½“å½’å®¿ã€‚");
 	Sleep(2000);
 	cleardevice();
 }
@@ -150,8 +150,7 @@ void Init(int i)
 	Fire[i].dt = 5;				
 	Fire[i].t1 = timeGetTime();
 	Fire[i].r = 0;				
-
-
+	
 	Jet[i].x = -240;				
 	Jet[i].y = -240;
 	Jet[i].hx = -240;				
@@ -162,7 +161,6 @@ void Init(int i)
 	Jet[i].n = 0;				
 	Jet[i].shoot = false;			
 }
-
 
 void Load()
 {
@@ -187,12 +185,9 @@ void Load()
 	{
 		SetWorkingImage(&sm);
 		int n = rand() % 5;
-
 		getimage(&Jet[i].img[0], n * 20, 0, 20, 50);			
 		getimage(&Jet[i].img[1], (n + 5) * 20, 0, 20, 50);		
 	}
-
-
 	SetWorkingImage();		
 }
 
@@ -203,7 +198,6 @@ void Chose(DWORD& t1)
 	if (t2 - t1 > 100)
 	{
 		int n = rand() % 20;
-
 		if (n < 13 && Jet[n].shoot == false && Fire[n].show == false)
 		{
 			Jet[n].x = rand() % 1200;
@@ -214,12 +208,11 @@ void Chose(DWORD& t1)
 			Jet[n].shoot = true;
 			putimage(Jet[n].x, Jet[n].y, &Jet[n].img[Jet[n].n], SRCINVERT);
 
-			/**** ²¥·ÅÃ¿¸öÑÌ»¨µ¯µÄÉùÒô *****/
+			/**** æ’­æ”¾æ¯ä¸ªçƒŸèŠ±å¼¹çš„å£°éŸ³ *****/
 			/*char c1[50], c2[30], c3[30];
 			sprintf(c1, "open ./fire/shoot.mp3 alias s%d", n);
 			sprintf(c2, "play s%d", n);
 			sprintf(c3, "close n%d", n);
-
 			mciSendString(c3, 0, 0, 0);
 			mciSendString(c1, 0, 0, 0);
 			mciSendString(c2, 0, 0, 0);*/
@@ -234,19 +227,12 @@ void Shoot()
 	for (int i = 0; i < 13; i++)
 	{
 		Jet[i].t2 = timeGetTime();
-
 		if (Jet[i].t2 - Jet[i].t1 > Jet[i].dt && Jet[i].shoot == true)
 		{
 			putimage(Jet[i].x, Jet[i].y, &Jet[i].img[Jet[i].n], SRCINVERT);
-
 			if (Jet[i].y > Jet[i].hy)
-			{
-				Jet[i].n++;
-				Jet[i].y -= 5;
-			}
-
+			{Jet[i].n++;et[i].y -= 5;}
 			putimage(Jet[i].x, Jet[i].y, &Jet[i].img[Jet[i].n], SRCINVERT);
-
 			if ((Jet[i].y - Jet[i].hy) * 4 < Jet[i].height)
 				Jet[i].dt = rand() % 4 + 10;
 
@@ -256,11 +242,9 @@ void Shoot()
 				sprintf(c1, "open ./file/bomb.wav alias n%d", i);
 				sprintf(c2, "play n%d", i);
 				sprintf(c3, "close s%d", i);
-
 				mciSendString(c3, 0, 0, 0);
 				mciSendString(c1, 0, 0, 0);
 				mciSendString(c2, 0, 0, 0);
-
 				putimage(Jet[i].x, Jet[i].y, &Jet[i].img[Jet[i].n], SRCINVERT);	
 				Fire[i].x = Jet[i].hx + 10;										
 				Fire[i].y = Jet[i].hy;											
@@ -281,13 +265,11 @@ void Style(DWORD& st1)
 
 	if (st2 - st1 >20000)		
 	{
-		
 		int x[13] = { 60, 75, 91, 100, 95, 75, 60, 45, 25, 15, 25, 41, 60 };
 		int y[13] = { 65, 53, 40, 22, 5, 4, 20, 4, 5, 22, 40, 53, 65 };
-		for (int i = 0; i < NUM; i++)
-		{
+		for (int i = 0; i < NUM; i++){
 			//cleardevice();
-			/**** ¹æÂÉ·Ö²¼ÑÌ»¨µ¯ ***/
+			/**** è§„å¾‹åˆ†å¸ƒçƒŸèŠ±å¼¹ ***/
 			Jet[i].x = x[i] * 10;
 			Jet[i].y = (y[i] + 75) * 10;
 			Jet[i].hx = Jet[i].x;
@@ -296,14 +278,13 @@ void Style(DWORD& st1)
 			Jet[i].shoot = true;
 			Jet[i].dt = 7;
 			putimage(Jet[i].x, Jet[i].y, &Jet[i].img[Jet[i].n], SRCINVERT);	
-
 			
 			Fire[i].x = Jet[i].x + 10;
 			Fire[i].y = Jet[i].hy;
 			Fire[i].show = false;
 			Fire[i].r = 0;
 
-			/**** ²¥·Å·¢ÉäÉùÒô ***/
+			/**** æ’­æ”¾å‘å°„å£°éŸ³ ***/
 			/*char c1[50], c2[30], c3[30];
 			sprintf(c1, "open ./fire/shoot.mp3 alias s%d", i);
 			sprintf(c2, "play s%d", i);
@@ -323,11 +304,9 @@ void Show(DWORD* pMem)
 {
 	
 	int drt[16] = { 5, 5, 5, 5, 5, 6, 25, 25, 25, 25, 55, 55, 55, 55, 55 };
-
 	for (int i = 0; i < NUM; i++)
 	{
 		Fire[i].t2 = timeGetTime();
-
 		if (Fire[i].t2 - Fire[i].t1 > Fire[i].dt && Fire[i].show == true)
 		{
 			if (Fire[i].r < Fire[i].max_r)
@@ -344,25 +323,19 @@ void Show(DWORD* pMem)
 			}
 			Fire[i].t1 = Fire[i].t2;
 		}
-
-		
 		if (Fire[i].draw)
 		{
 			for (double a = 0; a <= 6.28; a += 0.01)
 			{
 				int x1 = (int)(Fire[i].cen_x + Fire[i].r * cos(a));				
 				int y1 = (int)(Fire[i].cen_y - Fire[i].r * sin(a));
-
 				if (x1 > 0 && x1 < Fire[i].width && y1 > 0 && y1 < Fire[i].height)	
 				{
 					int b = Fire[i].xy[x1][y1] & 0xff;
 					int g = (Fire[i].xy[x1][y1] >> 8) & 0xff;
 					int r = (Fire[i].xy[x1][y1] >> 16);
-
-					
 					int xx = (int)(Fire[i].x + Fire[i].r * cos(a));
 					int yy = (int)(Fire[i].y - Fire[i].r * sin(a));
-
 					
 					if (r > 0x20 && g > 0x20 && b > 0x20 && xx > 0 && xx < 1200 && yy > 0 && yy < 800)
 						pMem[yy * 1200 + xx] = BGR(Fire[i].xy[x1][y1]);	
