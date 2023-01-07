@@ -6,10 +6,8 @@
 #include <Mmsystem.h>		
 #pragma comment ( lib, "Winmm.lib" )
 
-
 #define NUM		13		
 #define PI      3.1415926548
-
 
 struct FIRE
 {
@@ -25,7 +23,6 @@ struct FIRE
 	DWORD t1, t2, dt;		
 }Fire[NUM];
 
-
 struct JET
 {
 	int x, y;				
@@ -38,9 +35,6 @@ struct JET
 	byte n : 1;				
 }Jet[NUM];
 
-
-
-
 void welcome();
 void Init(int);		// 初始化烟花
 void Load();		// 加载烟花图片
@@ -48,7 +42,6 @@ void Shoot();		// 发射烟花
 void Chose(DWORD&);		// 筛选烟花
 void Style(DWORD&);		// 发射样式
 void Show(DWORD*);		// 绽放烟花
-
 
 void main()
 {
@@ -74,7 +67,6 @@ void main()
 	while (!kbhit())
 	{
 		Sleep(10);
-
 		for (int clr = 0; clr < 1000; clr++)
 		{
 			for (int j = 0; j < 2; j++)
@@ -94,12 +86,10 @@ void main()
 	}
 }
 
-
 void welcome()
 {
 	//setfillstyle(0);
 	setcolor(YELLOW);
-	
 	for (int i = 0; i < 50; i++)
 	{
 		int x = 600 + int(180 * sin(PI * 2 * i / 60));
@@ -110,7 +100,6 @@ void welcome()
 		outtextxy(x-10, y+100, "祝各位新年快乐");
 		Sleep(25);
 	}
-
 	Sleep(2000);
 	cleardevice();
 	settextstyle(25, 0, "楷体");
@@ -137,8 +126,6 @@ void Init(int i)
 	int r[13] = { 120, 120, 155, 123, 130, 147, 138, 138, 130, 135, 140, 132, 155 };
 	int x[13] = { 120, 120, 110, 117, 110, 93, 102, 102, 110, 105, 100, 108, 110 };
 	int y[13] = { 120, 120, 85, 118, 120, 103, 105, 110, 110, 120, 120, 104, 85 };
-
-
 	Fire[i].x = 0;			
 	Fire[i].y = 0;
 	Fire[i].width = 240;			
@@ -150,7 +137,6 @@ void Init(int i)
 	Fire[i].dt = 5;				
 	Fire[i].t1 = timeGetTime();
 	Fire[i].r = 0;				
-	
 	Jet[i].x = -240;				
 	Jet[i].y = -240;
 	Jet[i].hx = -240;				
@@ -166,7 +152,6 @@ void Load()
 {
 	IMAGE fm, gm;
 	loadimage(&fm, "./file/flower.jpg", 3120, 240);
-
 	for (int i = 0; i < 13; i++)
 	{
 		SetWorkingImage(&fm);
@@ -177,10 +162,8 @@ void Load()
 		for (int b = 0; b < 240; b++)
 			Fire[i].xy[a][b] = getpixel(a, b);
 	}
-
 	IMAGE sm;
 	loadimage(&sm, "./file/shoot.jpg", 200, 50);
-
 	for (int i = 0; i < 13; i++)
 	{
 		SetWorkingImage(&sm);
@@ -194,7 +177,6 @@ void Load()
 void Chose(DWORD& t1)
 {
 	DWORD t2 = timeGetTime();
-
 	if (t2 - t1 > 100)
 	{
 		int n = rand() % 20;
@@ -221,7 +203,6 @@ void Chose(DWORD& t1)
 	}
 }
 
-
 void Shoot()
 {
 	for (int i = 0; i < 13; i++)
@@ -235,7 +216,6 @@ void Shoot()
 			putimage(Jet[i].x, Jet[i].y, &Jet[i].img[Jet[i].n], SRCINVERT);
 			if ((Jet[i].y - Jet[i].hy) * 4 < Jet[i].height)
 				Jet[i].dt = rand() % 4 + 10;
-
 			if (Jet[i].y <= Jet[i].hy)
 			{
 				char c1[50], c2[30], c3[30];
@@ -262,7 +242,6 @@ void Shoot()
 void Style(DWORD& st1)
 {
 	DWORD st2 = timeGetTime();
-
 	if (st2 - st1 >20000)		
 	{
 		int x[13] = { 60, 75, 91, 100, 95, 75, 60, 45, 25, 15, 25, 41, 60 };
@@ -278,7 +257,6 @@ void Style(DWORD& st1)
 			Jet[i].shoot = true;
 			Jet[i].dt = 7;
 			putimage(Jet[i].x, Jet[i].y, &Jet[i].img[Jet[i].n], SRCINVERT);	
-			
 			Fire[i].x = Jet[i].x + 10;
 			Fire[i].y = Jet[i].hy;
 			Fire[i].show = false;
@@ -302,7 +280,6 @@ void Style(DWORD& st1)
 
 void Show(DWORD* pMem)
 {
-	
 	int drt[16] = { 5, 5, 5, 5, 5, 6, 25, 25, 25, 25, 55, 55, 55, 55, 55 };
 	for (int i = 0; i < NUM; i++)
 	{
@@ -315,7 +292,6 @@ void Show(DWORD* pMem)
 				Fire[i].dt = drt[Fire[i].r / 10];
 				Fire[i].draw = true;
 			}
-
 			if (Fire[i].r >= Fire[i].max_r - 1)
 			{
 				Fire[i].draw = false;
@@ -336,7 +312,6 @@ void Show(DWORD* pMem)
 					int r = (Fire[i].xy[x1][y1] >> 16);
 					int xx = (int)(Fire[i].x + Fire[i].r * cos(a));
 					int yy = (int)(Fire[i].y - Fire[i].r * sin(a));
-					
 					if (r > 0x20 && g > 0x20 && b > 0x20 && xx > 0 && xx < 1200 && yy > 0 && yy < 800)
 						pMem[yy * 1200 + xx] = BGR(Fire[i].xy[x1][y1]);	
 				}
